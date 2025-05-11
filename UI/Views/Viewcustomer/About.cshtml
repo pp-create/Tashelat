@@ -1,0 +1,295 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_layoutUser.cshtml";
+    var showError = ViewBag.ShowError as bool? ?? false;
+    var showSuccess = ViewBag.ShowSuccess as bool? ?? false;
+}
+<section id="about" class="about section">
+
+    <div class="container">
+        <div class="row gy-4 gx-5">
+
+            <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
+                <img src="~/Medilab/assets/img/about.jpg" id="aboutsrc" class="img-fluid" alt="">
+                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox pulsating-play-btn"></a>
+            </div>
+
+            <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                <h3>ماذا عنا</h3>
+                <p id="aboutcontact">
+                </p>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-vial-circle-check"></i>
+                        <div>
+                            <h5>الرؤية</h5>
+                            <p id="aboutcontactv">  </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-pump-medical"></i>
+                        <div>
+                            <h5>الهدف</h5>
+                            <p id="aboutcontactg"> </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                        <div>
+                            <h5>الرساله</h5>
+                            <p id="aboutcontactm"></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- /About Section -->
+<!-- Stats Section -->
+<section id="stats" class="stats section light-background">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <i class="fa-solid fa-user-doctor"></i>
+                <div class="stats-item">
+                    <span data-purecounter-start="0" id="aboutcontactc" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>موظفين</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <i class="fa-regular fa-hospital"></i>
+                <div class="stats-item">
+                    <span data-purecounter-start="0" id="aboutcontacts" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>خدمات</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <i class="fas fa-flask"></i>
+                <div class="stats-item">
+                    <span data-purecounter-start="0" id="aboutcontactu" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>عملاء</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <i class="fas fa-award"></i>
+                <div class="stats-item">
+                    <span data-purecounter-start="0" id="aboutcontactcc" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>شراكات</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Stats Section -->
+<!-- Services Section -->
+<section id="services" class="services section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>خدماتنا</h2>
+        <p>
+            شركة "تسهيلات" هي شركة متخصصة في التمويل تتمتع بخبرة واسعة، توفر مجموعة شاملة من الحلول التمويلية الشخصية والتجارية والعقارية،
+        </p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4" id="servicesdata">
+
+       
+            </div><!-- End Service Item -->
+
+      
+
+    </div>
+
+</section><!-- /Services Section -->
+<!-- Appointment Section -->
+<section id="contact" class="contact section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>تواصل معنا</h2>
+        <p>إذا كان لديك اى استفسار او سؤال لا تتردد فى الاتصال بنا </p>
+    </div><!-- End Section Title -->
+
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-4">
+                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <i class="bi bi-geo-alt flex-shrink-0"></i>
+                    <div>
+                        <h3>العنوان </h3>
+                        <p id="adderiescontect111"></p>
+                    </div>
+                </div><!-- End Info Item -->
+
+                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                    <i class="bi bi-telephone flex-shrink-0"></i>
+                    <div>
+                        <h3>اتصل بنا</h3>
+                        <p id="phonecontect111"></p>
+                    </div>
+                </div><!-- End Info Item -->
+
+                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+                    <i class="bi bi-envelope flex-shrink-0"></i>
+                    <div>
+                        <h3>البريد الاليكترونى</h3>
+                        <p id="gamil111"></p>
+                    </div>
+                </div><!-- End Info Item -->
+
+            </div>
+
+            <div class="col-lg-8">
+                <form asp-action="Addrmassage" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+
+                        <div class="col-md-6">
+                            <input type="text" name="name" class="form-control" placeholder="إسمك" required="">
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <input type="email" class="form-control" name="gamil" placeholder="البريد الاليكترونى" required="">
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="title" placeholder="Subject" required="">
+                        </div>
+
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="massage" rows="6" placeholder="رسالتك" required=""></textarea>
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                            @if (showError)
+                            {
+                                <div class="error-message">حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة لاحقًا.</div>
+                            }
+                            @if (showSuccess)
+                            {
+                                <div class="sent-message">تم إرسال رسالتك. شكراً لك.</div>
+                            }
+
+                            <button type="submit" class="btn btn-primary">إرسال</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div><!-- End Contact Form -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Contact Section -->
+<script src="~/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        Getdataabout();
+        Getdataservices();
+    
+      
+
+    });
+    function Getdataabout() {
+
+        $.ajax({
+
+            type: "Get",
+            url: "/Viewcustomer/getAbout",
+
+            success: function (res) {
+                $("#aboutcontact").html(res.description)
+                $("#aboutcontactm").html(res.message)
+                $("#aboutcontactv").html(res.vision)
+                $("#aboutcontactg").html(res.goal)
+                $("#aboutcontactc").attr("data-purecounter-end", res.employes)
+                $("#aboutcontactu").attr("data-purecounter-end", res.users)
+                $("#aboutcontacts").attr("data-purecounter-end", res.services)
+                $("#aboutcontactcc").attr("data-purecounter-end", res.company)
+                var newSrc = "/image/" + res.file;
+
+                // Update the src attribute of the img element
+                $("#aboutsrc").attr("src", newSrc);
+
+
+                // Trigger PureCounter to update the display
+                // PureCounter needs to be re-initialized to apply new values
+                new PureCounter();
+
+                // console.log(res);
+                // $.each(res, function (i, e) {
+                //     $("#slctDoctor").append("<option value='" + e.id + "'>" + e.circlename + "</option>");
+                // });
+            }
+
+        });
+
+    }
+  
+    function Getdataservices() {
+        $.ajax({
+            type: "GET",
+            url: "/Viewcustomer/side",
+            success: function (res) {
+                console.log(res);
+                var html = "";
+
+                // Assuming `res` is an array of objects
+                $.each(res, function (i, e) {
+                    // Use `e` to access each item in the `res` array
+                    html += `
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="service-item position-relative">
+                                <div class="icon">
+                                        <img src='/Image/${e.file}'>
+                                </div>
+                                <a href="#" class="stretched-link">
+                                    <h3>${e.sidename}</h3>
+                                </a>
+                                <p>${e.contect}</p>
+                            </div>
+                        </div><!-- End Service Item -->
+                    `;
+                });
+
+                // Update the HTML content of the element with id 'servicesdata'
+                $("#servicesdata").html(html);
+            },
+            error: function (xhr, status, error) {
+                console.error("An error occurred: " + error);
+            }
+        });
+    }
+
+
+ 
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

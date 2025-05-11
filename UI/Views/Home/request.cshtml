@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewData["Title"] = "request";
+    Layout = "~/Views/Shared/_layout.cshtml";
+    var roleid = @Context.Session.GetString("Roleid");
+}
+
+<h1>الطلبات</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataTables AJAX Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <a href="/Home/DownloadExcel" class="btn btn-primary">تنزيل  اكسيل</a>
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>رقم </th>
+                <th>اسم</th>
+              
+                <th>رقم التلفون</th>
+                <th>نوع التمويل</th>
+                <th> مقيم فين</th>
+               
+                <th> الحاله</th>
+                <th>تاريخ الاضافه</th>
+             
+                <th>تعديل</th><th>حذف</th>
+              
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+
+                <th>رقم التعريفي</th>
+                <th>اسم</th>
+               
+                <th>رقم التلفون</th>
+                <th>نوع التمويل</th>
+                <th> مقيم فين</th>
+             
+                <th> الحاله</th>
+                <th>تاريخ الاضافه</th>
+
+                <th>تعديل</th><th>حذف</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            var roleid = '@roleid';
+            if (roleid === "1") {
+                get();
+            } else {
+                // Apply the configuration for other roles
+                getuser();
+            }
+          
+        });
+        function get(){
+            new DataTable('#example', {
+                "bDestroy": true,
+                "bSearchable": true,
+                "responsive": true,
+                "language": {
+                    "searchPlaceholder": 'Search...',
+                    "sSearch": '',
+                    "lengthMenu": '_MENU_ items/page',
+                },
+                "ajax": {
+                    "url": "/Home/LoadCategoriesGrid",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { data: 'id' }, { data: 'name' },
+                   
+                    { data: 'phone' },
+                    { data: 'type' },
+                    { data: 'livesin' },
+                
+                    { data: 'status' },
+                    {
+                        "data": "creationDate",
+                        "render": function (data, type, row) {
+                            // Check if data is valid before formatting
+                            if (data) {
+                                // Convert and format the date
+                                let date = new Date(data);
+                                let options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                                return date.toLocaleDateString(undefined, options);
+                            }
+                            return data; // Return the original data if not valid
+                        }
+                    },
+                    {
+                        data: null, render: function (data, type, row) {
+
+                            return "<a href='#' onclick=EditCategory('" + data.id + "');><i class='fas fa-edit'></i></a>";
+                        }
+                    }, {
+                        data: null, render: function (data, type, row) {
+
+                            return "<a href='#' onclick=deleteCategory('" + data.id + "');> <i class='fas fa-trash-alt'></i> </a>";
+                        }
+                    }
+                ]
+            })
+        }  function getuser(){
+            new DataTable('#example', {
+                "bDestroy": true,
+                "bSearchable": true,
+                "responsive": true,
+                "language": {
+                    "searchPlaceholder": 'Search...',
+                    "sSearch": '',
+                    "lengthMenu": '_MENU_ items/page',
+                },
+                "ajax": {
+                    "url": "/Home/LoadCategoriesGriduser",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { data: 'id' }, { data: 'name' },
+                    { data: 'nid' },
+                    { data: 'phone' },
+                    { data: 'type' },
+                    { data: 'livesin' },
+                    { data: 'salary' },
+                    { data: 'status' },
+                    {
+                        "data": "creationDate",
+                        "render": function (data, type, row) {
+                            // Check if data is valid before formatting
+                            if (data) {
+                                // Convert and format the date
+                                let date = new Date(data);
+                                let options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                                return date.toLocaleDateString(undefined, options);
+                            }
+                            return data; // Return the original data if not valid
+                        }
+                    },
+                    {
+                        data: null, render: function (data, type, row) {
+
+                            return "<a href='#' onclick=EditCategory('" + data.id + "');><i class='fas fa-edit'></i></a>";
+                        }
+                    }, {
+                        data: null, render: function (data, type, row) {
+
+                            return "<a href='#' onclick=deleteCategory('" + data.id + "');> <i class='fas fa-trash-alt'></i> </a>";
+                        }
+                    }
+                ]
+            })
+        }
+        function EditCategory(id) {
+           
+           
+            if (id) {
+                // Properly encode the ID to handle special characters
+                const encodedId = encodeURIComponent(id);
+                // Use window.location.href to redirect
+                window.location.href = `/Home/editerequest?id=${encodedId}`;
+            } else {
+                console.error("Invalid ID provided");
+                // Optionally, handle cases where the ID is not valid
+                alert("Invalid ID provided");
+            }
+        } function deleteCategory(id) {
+            if (confirm('هل أنت متأكد أنك تريد حذف هذه الفئة؟')) {
+                $.ajax({
+                    url: '/Home/Deleterequest',  // URL to the delete action
+                    type: 'Get',
+                    data: {
+                        id: id
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('تم حذف الفئة بنجاح!');
+                            // Optionally, refresh the page or remove the item from the UI
+                            location.reload();  // Refreshes the page to reflect changes
+                        } else {
+                            alert('فشل في حذف الفئة. يرجى المحاولة مرة أخرى.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('حدث خطأ أثناء محاولة حذف الفئة. يرجى المحاولة مرة أخرى.');
+                        console.error('خطأ:', error);
+                    }
+                });
+            }
+           
+          
+        }
+
+    </script>
+</body>
+</html>
+

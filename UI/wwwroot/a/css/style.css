@@ -1,0 +1,67 @@
+header{
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+}
+#home,#contact,#about,#dropdownMenuLink{
+    width: 250px;
+}
+#icah{
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+#ica,#footer{
+    font-family: 'Merriweather', serif;
+    color: #2A346C;
+    float: left;
+}
+#icalogo{
+    height: 130px;
+}
+
+main{
+background: linear-gradient(90deg, #FF9700 0%, #2A346C 50%);
+}
+#carouselExampleCaptions{
+    padding: 15px;
+}
+#login{
+    padding: 100px;
+    font-family: 'Roboto', sans-serif;
+}
+#login input{
+    border-radius: 30px;
+    border: black 5px;
+}
+#submitlgn{
+    width: 100px;
+    border: 0px;
+    border-radius: 20px;
+    color: #2A346C;
+}
+#sublgn{
+    border-radius: 20px;
+    color: white;
+    background-color: #2A346C;
+}
+#gitbtn{
+    color: white;
+    background-color: #2A346C;
+}
+.card-text{
+    text-align: center;
+}
+#nbar{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+@media screen and (max-width:624px) {
+    #nbar{ 
+        transform: translateX(15vw);
+    }
+    }

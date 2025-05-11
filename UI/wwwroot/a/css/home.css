@@ -1,0 +1,17 @@
+#home{
+    background-color: #FF9700;
+    color: white;
+}
+#contact,#about{
+    color: #FF9700;
+}
+#get{
+    color: white;
+    background-color: #FF9700;
+    width: 70%;
+    margin: 10px;
+    border-radius: 20px;
+}
+#cards{
+    padding: 20px;
+}

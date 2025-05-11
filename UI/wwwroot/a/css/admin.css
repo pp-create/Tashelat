@@ -1,0 +1,34 @@
+body{
+    background: rgb(2,0,36);
+background: linear-gradient(50deg, #FF9700 0%, #2A346C 50%);
+}
+#icalogo{
+    background-color: white;
+}
+main{
+    font-family: 'Lobster', cursive;
+}
+#emaillgn{
+    border-radius: 20px;
+    width: 50%;
+}
+#passlgn{
+    border-radius: 20px;
+    width: 50%;
+    transform: translateX(-12px);
+}
+#lblp{
+    transform: translateX(-12px);
+}
+#ica{
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px;
+}
+#icalogo{
+    border-radius: 30px;
+}
+#icah{
+    background-color: white;
+    border-radius: 30px;
+}

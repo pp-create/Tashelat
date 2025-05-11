@@ -1,0 +1,146 @@
+﻿@using BLL.Interface
+@model DAL.ViewModel.AboutVM
+
+@{
+    ViewData["Title"] = "editeAbout";
+}
+
+<style>
+    img.css({
+                width: '100px',
+                height: '100px'
+            })
+</style>
+<div class="pb-3">
+    <h1 style="text-align:center"> تعديل نبذه عننا</h1>
+</div>
+
+
+
+<hr />
+<div class="row" style="display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+
+    justify-content: space-between;">
+
+    @**@
+    <div class="col-lg-8">
+        <form asp-action="upeAbout" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="form-group">
+                <label asp-for="description" style="direction:rtl;display: block;" class="control-label">نبذه عنا</label>
+                <textarea class="form-control name="description" form-control show-tick" type="text" list="UserName" id="exampleDataList" asp-for="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vision" style="direction:rtl;display: block;" class="control-label">الرؤية</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="Vision"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="goal" style="direction:rtl;display: block;" class="control-label">الهدف</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="goal"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="message" style="direction:rtl;display: block;" class="control-label">الرسالة</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="message"></textarea>
+
+
+            </div>
+            <div class="form-group">
+                <label asp-for="users" style="direction:rtl;display: block;" class="control-label">عملاء</label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="" asp-for="users" />
+
+            </div> <div class="form-group">
+                <label asp-for="company" style="direction:rtl;display: block;" class="control-label">شراكات</label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="" asp-for="company" />
+
+            </div> <div class="form-group">
+                <label asp-for="Employes" style="direction:rtl;display: block;" class="control-label"></label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="Name" asp-for="Employes" />
+
+            </div> <div class="form-group">
+                <label asp-for="services" style="direction:rtl;display: block;" class="control-label">موظفين</label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="Name" asp-for="services" />
+
+            </div>
+
+            <div class="form-group">
+                <label  style="direction:rtl;display: block;" class="control-label">الصوره  </label>
+                <input class="form-control form-control show-tick" type="file" name="file1" list="UserName" id="exampleDataList"
+                       placeholder="Name"  />
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="CreationDate" style="direction:rtl;display: block;" class="control-label">التاريخ</label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+         
+            <div id="slider"></div>
+            <div class="form-group">
+                <input type="submit" value="تعديل" style="display:block; margin:auto" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="getAbout">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="~/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function () {
+     
+    });
+    $(document).ready(function () {
+        var sideNane = $("#exampleDataList").val();
+
+
+        $("#exampleDataList").change(function () {
+            var sideNane = $("#exampleDataList").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Home/Getcile",
+                data: { Name: sideNane },
+
+                success: function (res) {
+                    $.each(res, function (i, e) {
+                        $("#slctDoctor").append("<option value='" + e.id + "'>" + e.circlename + "</option>");
+                    });
+                }
+
+            });
+        })
+
+    });
+
+</script>
+
+
+

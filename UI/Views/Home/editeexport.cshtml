@@ -1,0 +1,176 @@
+﻿@using BLL.Interface
+
+@model DAL.ViewModel.filebbookViewModel
+@{
+    ViewData["Title"] = "editeexport";
+}
+
+<div class="pb-3">
+    <h1 style="text-align:center"> تعديل الصفحه الرئسية</h1>
+</div>
+@inject IServucesVM side
+@inject IQuestions circle
+@inject IHomepage home
+
+
+<hr />
+<div class="row" style="display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+
+    justify-content: space-between;">
+
+@**@
+    <div class="col-lg-8">
+        <form asp-action="upexport" method="Post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" class="form-control" />
+          
+
+
+
+         
+       
+          
+            <div id="formContainer">
+                @foreach (var item in home.GetAllbook(@ViewBag.id))
+                {
+                    <div class="form-group">
+                        <label class="control-label" style="direction:rtl;display: block;">ملفات</label>
+                        <input type="file" name="Files" value="@item.Name" class="form-control" multiple />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label style="direction:rtl;display: block;" class="control-label">السؤال</label>
+
+                        <select class="form-control form-control show-tick" type="text" id="questionSelect" placeholder="Name" name="Title">
+                            @foreach (var item1 in side.GetAll())
+                            {
+                                <option value="@item1.sidename">@item1.sidename</option>
+
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="direction:rtl;display: none;">
+                        <label style="direction:rtl;display: block;" class="control-label">الإجابة</label>
+                        <input class="form-control form-control show-tick" type="text" value="e" id="answerInput" placeholder="Name" name="Answer" />
+                    </div>
+                    <div class="form-group" style="direction:rtl;display: none;">
+                        <label style="direction:rtl;display: block;" class="control-label">لينك</label>
+                        <input class="form-control form-control show-tick" type="text" value="e" placeholder="Name" name="Files[0].Url" />
+                    </div>
+                }
+               
+            </div>
+            <div id="slider"></div>
+            <div class="form-group">
+                <input type="submit" value="تعديل" style="display:block; margin:auto" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="getexport">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="~/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>    let rowIndex = 1;
+
+    function addRow() {
+        const container = document.getElementById('formContainer');
+        const newRow = document.createElement('div');
+        newRow.innerHTML = `
+                    <div class="form-group">
+                        <label class="control-label" style="direction:rtl;display: block;">ملفات</label>
+                            <input type="file" name="Files[${rowIndex}].Files" class="form-control" multiple />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label style="direction:rtl;display: block;" class="control-label">السؤال</label>
+                   
+                                 <select class="form-control form-control show-tick" type="text" id="questionSelect" placeholder="Name" name="Files[${rowIndex}].Title">
+    @foreach (var item1 in side.GetAll())
+    {
+                                        <option value="@item1.sidename">@item1.sidename</option>
+
+    }
+                            </select>
+                    </div>
+                    <div class="form-group" style="direction:rtl;display: none;">
+                        <label style="direction:rtl;display: block;" class="control-label">الإجابة</label>
+                        <input class="form-control form-control show-tick" type="text" value="e" placeholder="Name" name="Files[${rowIndex}].Answer" />
+                    </div>
+                        <div class="form-group"  style="direction:rtl;display: none;">
+                        <label style="direction:rtl;display: block;" class="control-label">لينك</label>
+                            <input class="form-control form-control show-tick" value="e" type="text" placeholder="Name" name="Files[${rowIndex}].Url" />
+                    </div>
+                `;
+        container.appendChild(newRow);
+        rowIndex++;
+    }
+    $(document).ready(function () {
+        // عند تغيير حقل الملفات
+        $('input[type=file]').change(function () {
+            // تحديد العنصر المستهدف لعرض الصور (slider)
+            var slider = $('#slider');
+
+            // حذف الصور الحالية من slider (إذا كانت موجودة)
+            slider.empty();
+
+            // عرض الصور المختارة في slider
+            for (var i = 0; i < this.files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // إنشاء عنصر صورة وتعيين مسار الصورة
+                    var img = $('<img>').attr('src', e.target.result).css({
+                        'height': '100px',
+                        'width': '100px'
+                    });
+
+                    // إضافة الصورة إلى slider
+                    slider.append(img);
+                };
+                // قراءة الملف كصورة
+                reader.readAsDataURL(this.files[i]);
+            }
+        });
+    });
+    $(document).ready(function () {
+        var sideNane = $("#exampleDataList").val();
+
+ 
+        $("#exampleDataList").change(function () {
+            var sideNane = $("#exampleDataList").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Home/Getcile",
+                data: { Name: sideNane },
+
+                success: function (res) {
+                    $.each(res, function (i, e) {
+                        $("#slctDoctor").append("<option value='" + e.id + "'>" + e.circlename + "</option>");
+                    });
+                }
+
+            });
+        })
+
+    });
+
+</script>
+
+

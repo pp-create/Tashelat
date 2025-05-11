@@ -1,0 +1,17 @@
+#home{
+    background-color: #007f88;
+    color: white;
+}
+#contact,#about{
+    color: #007f88;
+}
+#get{
+    color: white;
+    background-color: #007f88;
+    width: 70%;
+    margin: 10px;
+    border-radius: 20px;
+}
+#cards{
+    padding: 20px;
+}

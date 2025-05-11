@@ -1,0 +1,126 @@
+﻿@model DAL.ViewModel.RequestVM
+@using BLL.Interface;
+@inject Iusers user;
+
+@{
+    ViewData["Title"] = "editerequest";
+    Layout = "~/Views/Shared/_layout.cshtml";
+    var roleid = @Context.Session.GetString("Roleid");
+} <style>
+      .centered-form {
+          max-width: 600px; /* Set a max-width for better readability */
+          margin: 0 auto; /* Center horizontally */
+      }
+
+      .form-container {
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-danger {
+          color: #dc3545;
+      }
+</style>
+
+<div class="container">
+    <h1 class="text-center my-4">تعديل حاله الطلب </h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="form-container">
+                <form asp-action="uperequest">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="name" class="control-label">الاسم</label>
+                        <input asp-for="name" class="form-control"  readonly/>
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Status" class="control-label">الحالة</label>
+                     
+                        <select asp-for="Status" class="form-control">
+                            <option value="انتظار">انتظار</option>
+                            <option value="الموافق">الموافق</option>
+                            <option value="رافض">رافض</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    @if (roleid=="1")
+                    {
+                        <div class="form-group">
+                            <label asp-for="userId" class="control-label">الموظف المسؤول</label>
+
+                            <select asp-for="userId" class="form-control">
+                                @foreach (var item in user.GetAll())
+                                {
+                                    if (item.RoleId == 1)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.UserName</option>
+                                    }
+
+
+                                }
+                            </select>
+                            <span asp-validation-for="userId" class="text-danger"></span>
+                        </div>
+                    }
+                  
+                   @*  <div class="form-group">
+                        <label asp-for="nid" class="control-label" >الرقم الهويه</label>
+                        <input asp-for="nid" class="form-control" readonly />
+                        <span asp-validation-for="nid" class="text-danger"></span>
+                    </div> *@
+                    <div class="form-group">
+                        <label asp-for="phone" class="control-label" >رقم الهاتف</label>
+                        <input asp-for="phone" class="form-control" readonly />
+                        <span asp-validation-for="phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="type" class="control-label">النوع التمويل</label>
+                        <input asp-for="type" class="form-control" readonly />
+                        <span asp-validation-for="type" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="livesin" class="control-label">مقيم فين</label>
+                        <input asp-for="livesin" class="form-control" readonly />
+                        <span asp-validation-for="livesin" class="text-danger"></span>
+                    </div>
+                 @*    <div class="form-group">
+                        <label asp-for="salary" class="control-label">الراتب</label>
+                        <input asp-for="salary" class="form-control" readonly />
+                        <span asp-validation-for="salary" class="text-danger"></span>
+                    </div> *@
+                @*     <div class="form-group">
+                        <label asp-for="namebank" class="control-label">اسم البنك</label>
+                        <input asp-for="namebank" class="form-control" readonly />
+                        <span asp-validation-for="namebank" class="text-danger"></span>
+                    </div> *@
+                    <div class="form-group">
+                        <label asp-for="Id" class="control-label">الرقم التعريفي</label>
+                        <input asp-for="Id" class="form-control" readonly />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreationDate" class="control-label">تاريخ الإنشاء</label>
+                        <input asp-for="CreationDate" type="datetime" class="form-control" readonly />
+                        <span asp-validation-for="CreationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="حفظ" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="request">Back to List</a>
+</div>
+

@@ -1,0 +1,742 @@
+﻿  
+
+@{
+    ViewData["Title"] = "Index";
+   Layout = "~/Views/Shared/_LayoutUser.cshtml";  
+    @using BLL.Interface;
+    @model DAL.ViewModel.QuestionsVM;
+ 
+    @inject IQuestions side; 
+    @inject Icontect contect;
+    @inject IHomepage home
+       var showError = ViewBag.ShowError as bool? ?? false;
+    var showSuccess = ViewBag.ShowSuccess as bool? ?? false;
+}
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+<link href="~/stylesheet.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Bootstrap Icons (optional, if you use icons from Bootstrap) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <style>
+        .faq-content {
+            display: none;
+        }
+        .faq-toggle {
+            cursor: pointer;
+        }
+    </style>
+  <main class="main">
+
+   <!-- Hero Section -->
+    <section id="hero" style="padding: 0px" class="hero section light-background">
+
+      
+
+         <div class="hero owl-carousel owl-theme">
+  
+   @foreach (var item in home.GetAlbook()){
+   <div class="item">
+     <div class="container">
+       <div class="row ">
+         <div class="col-12 col-md-5 ">
+           <div class="col-12 col-lg-7">
+                    <img src="/Image/@item.Name"  class="imge" alt="صورة" style="
+    
+">
+
+                  </div>
+         </div>
+         <div class="col-12 col-lg-7">
+              
+           <div class="hero__content">
+                <img src="/Image/@item.Name"  class="imaged" alt="صورة" style="
+    
+">
+             <h2 class="hero__heading">@item.Title</h2>
+             <p class="hero__paragraph">@item.Answer</p>
+              <a class="hero__button hero__button--mobile mt-3" href="/Viewcustomer/viewservice?sidename=@item.Title&contect=@item.Answer">قدم هنا</a>
+         
+             <a class="hero__button" href="/Viewcustomer/viewservice?sidename=@item.Title&contect=@item.Answer">قدم هنا</a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+ }
+ </div>
+@* 
+       <section id="testimonials" style="margin-top:-47px" class=" section">
+
+      <div class="container" style="    height: 500px;">
+
+        <div class="row align-items-center">
+
+        
+
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="swiper " style="    height: 500px;">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+              <div class="swiper-wrapper">
+
+                 @foreach (var item in home.GetAlbook())
+                                        {
+
+
+
+
+
+
+                                                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
+				   <a href="/Viewcustomer/viewservice?sidename=@item.Title&contect=@item.Answer">
+                     <img src="/Image/@item.Name"  style="height: 500px;" alt="">
+					 </a>
+                    <h4>@item.Title</h4>
+                    <p>@item.Answer</p>
+					<div class="text-center">
+                <a href="#about" class="more-btn"><span>قدم طلبك</span> </a>
+              </div>
+                  </div>
+                  </div>
+                </div><!-- End testimonial item -->
+
+    }
+
+            
+
+               
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section> *@
+   
+	</Section>
+    <!--done-->
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container">
+        <div class="row gy-4 gx-5">
+
+          <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
+            <img src="~/Medilab/assets/img/about.jpg" id="aboutsrc" class="img-fluid" alt="">
+            <a href="https://www.youtube.com/watch?v=XhUwB0jY4I4" class="glightbox pulsating-play-btn"></a>
+          </div>
+
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <h3>ماذا عنا</h3>
+            <p id="aboutcontact"> 
+               </p>
+            <ul>
+              <li>
+                <i class="fa-solid fa-vial-circle-check"></i>
+                <div>
+                  <h5>الرؤية</h5>
+                  <p id="aboutcontactv">  </p>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-pump-medical"></i>
+                <div>
+                  <h5>الهدف</h5>
+                  <p id="aboutcontactg">.</p>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-heart-circle-xmark"></i>
+                <div>
+                  <h5>الرساله</h5>
+                  <p id="aboutcontactm"></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section light-background">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+            <i class="fa-solid fa-user-doctor"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0"id="aboutcontactc" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+              <p>موظفين</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+            <i class="fa-regular fa-hospital"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0" id="aboutcontacts" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+              <p>خدمات</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+            <i class="fas fa-flask"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0"id="aboutcontactu"data-purecounter-end=""  data-purecounter-duration="1" class="purecounter"></span>
+              <p>عملاء</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+            <i class="fas fa-award"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0" id="aboutcontactcc"data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+              <p>شراكات</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>خدماتنا</h2>
+        <p>
+تسهيلات متخصصة في مجال حلول التمويل الشخصي وتمويل السيارت وحلول الرهن العقاري والتمويل العقاري وتمويل نقاط البيع
+</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4" id="servicesdata">
+
+     
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Appointment Section -->
+    <section id="appointment" class="appointment section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>طلب تمويل</h2>
+        <p>أحصل على التمويل المناسب لك فقط بضغطة زر</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <form  asp-action="Addrequest"  method="post" role="form"  enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="إسمك" required="">
+            </div>
+			<div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="tel" class="form-control" name="phone" id="phone" placeholder="رقم الهاتف" required="">
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0" style="display:none">
+              <input type="number" class="form-control"  value="2"name="nid" id="email" placeholder="رقم الهويه " required="">
+            </div>
+           
+             
+          </div>
+          <div class="row">
+            <div class="col-md-4 form-group mt-3" style="display:none" >
+              <input type="number" class="form-control" name="salary" value="1111111" id="email" placeholder="الراتب  " required="">
+            </div>
+            <div class="col-md-4 form-group mt-3"  style="display:none">
+              <input type="text" class="form-control" name="namebank" value="w" id="email" placeholder=" اسم بنك    " required="">
+            </div>
+			<div class="col-md-4 form-group mt-3">
+              <select name="livesin" id="doctor" class="form-select" required="">
+                <option value="">الجنسية</option>
+                <option value="سعودى">سعودى</option>
+                <option value="غير سعودى">غير سعودى</option>
+
+              </select>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <select name="type" id="department" class="form-select" required="">
+                
+                <option value="تمويل شخصى">تمويل شخصى</option>
+                <option value="رهن عقاري">رهن عقاري</option>
+                <option value="تمويل نقاط البيع">تمويل نقاط البيع</option>
+				<option value="تمويل سيارة">تمويل سيارة</option>
+              </select>
+            </div>
+            
+          </div>
+
+         
+          <div class="mt-3">
+           
+                @if (showError)
+            {
+                <div class="btn-danger" style="text-align:center">حدث خطأ أثناء إرسال الطلب. يرجى المحاولة لاحقًا.</div>
+            }
+            @if (showSuccess)
+            {
+                <div class="btn-info" style="text-align:center">تم إرسال الطلب. شكراً لك.</div>
+            }
+  <div class="text-center"><button type="submit" class="btn btn-primary">إرسال  الطلب </button></div>
+          </div>
+        </form>
+
+      </div>
+
+    </section><!-- /Appointment Section -->
+
+    <!-- Departments Section -->
+   
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="doctors section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>كلمات من بعض العملاء الذين وثقوا فينا</h2>
+        <p>إنه لمن دواعى سرورنا أن نسمع هذه الكلمات من عملائنا الكرام ولمثل هذا نحن نكمل طريقنا </p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4" id="CUSTOMERDATA">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="~/Medilab/assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>عبدالله الشمرى</h4>
+                <span>مدير عام</span>
+                <p>شركتكم المبتكرة والمتفانية قد أثبتت قدرتها القيادية والموثوقة</p>
+               
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="~/Medilab/assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>رهف الخالدى</h4>
+                <span>مدير تسويق</span>
+                <p>شركتكم المبتكرة والمتفانية قد أثبتت قدرتها القيادية والموثوقة</p>
+                
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="~/Medilab/assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>معتز الهاشمى</h4>
+                <span>رئيس مجلس ادارة</span>
+                <p>شركتكم المبتكرة والمتفانية قد أثبتت قدرتها القيادية والموثوقة</p>
+                
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="~/Medilab/assets/img/doctors/doctors-4.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>أمل الفوزان</h4>
+                <span>مدير تسويق</span>
+                <p>شركتكم المبتكرة والمتفانية قد أثبتت قدرتها القيادية والموثوقة</p>
+               
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Doctors Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>الأسئلة الشائعة</h2>
+        <p>تعرف على الاسئلة الاكثر شيوعا لدينا واذا كان لديك اى استفسارات اخرى لا تتردد فى التواصل معنا مباشرة</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="faq-container" id="Questionsdata">
+
+      @foreach (var item in side.GetAll())
+                    {
+                       
+                <div class="faq-item">
+                    <h3>@item.title</h3>
+                    <div class="faq-content">
+                        <p>@item.contect</p>
+                    </div>
+                    <i class="faq-toggle bi bi-chevron-right"></i>
+                </div><!-- End Faq item -->
+            }
+        
+
+              
+            </div>
+
+          </div><!-- End Faq Column-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+    
+
+   
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>تواصل معنا</h2>
+        <p>إذا كان لديك اى استفسار او سؤال لا تتردد فى الاتصال بنا </p>
+      </div><!-- End Section Title -->
+
+    
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>العنوان </h3>
+                <p id="adderiescontect">A108 شارع العليا, الرياض المملكه العربيه السعوديه,العقاريه ثلاثه</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>اتصل بنا</h3>
+                <p id="phonecontect">+966 59 022 8213</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>البريد الاليكترونى</h3>
+                <p id="gamil">info@tashealat.com</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+          <div class="col-lg-8">
+            <form asp-action="Addrmassage" method="post"  enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="إسمك" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="gamil" placeholder="البريد الاليكترونى" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="title" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="massage" rows="6" placeholder="رسالتك" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  @if (showError)
+            {
+                <div class="error-message">حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة لاحقًا.</div>
+            }
+            @if (showSuccess)
+            {
+                <div class="sent-message">تم إرسال رسالتك. شكراً لك.</div>
+            }
+
+                  <button type="submit" class="btn btn-primary">إرسال</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+<script src="~/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous"></script>
+   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    
+    $(document).ready(function () {
+       
+        Getdataabout();
+        Getdataservices();
+ 
+        GetdatasRepliescostomercs();
+        getcontect();
+           $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        items: 1,
+        rtl: true,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 2500,
+        autoplayHoverPause: true,
+      });
+
+    });
+
+    function Getdataabout(){
+     
+            $.ajax({
+
+                type: "Get",
+                url: "/Viewcustomer/getAbout",
+              
+                success: function (res) {
+                    $("#aboutcontact").html(res.description)
+                    $("#aboutcontactm").html(res.message)
+                    $("#aboutcontactv").html(res.vision)
+                    $("#aboutcontactg").html(res.goal)
+                    $("#aboutcontactc").attr("data-purecounter-end",res.employes)
+                    $("#aboutcontactu").attr("data-purecounter-end",res.users)
+                    $("#aboutcontacts").attr("data-purecounter-end",res.services)
+                    $("#aboutcontactcc").attr("data-purecounter-end",res.company)
+        var newSrc = "/image/" + res.file;
+
+            // Update the src attribute of the img element
+            $("#aboutsrc").attr("src", newSrc);
+                     
+
+    // Trigger PureCounter to update the display
+    // PureCounter needs to be re-initialized to apply new values
+    new PureCounter();
+                    
+                    // console.log(res);
+                    // $.each(res, function (i, e) {
+                    //     $("#slctDoctor").append("<option value='" + e.id + "'>" + e.circlename + "</option>");
+                    // });
+                }
+
+            });
+        
+    }
+   function Getdatahome() {
+    $.ajax({
+        type: "GET",
+        url: "/Viewcustomer/getexport",
+        success: function (res) {
+          
+               $("#hometitle").html(res.titile)
+                    $("#homecontect").html(res.ancswer)
+                   
+                  
+        var newSrc = "/image/" + res.image;
+
+            // Update the src attribute of the img element
+            $("#homeimage").attr("src", newSrc);
+        },
+        error: function (xhr, status, error) {
+            console.error("An error occurred: " + error);
+        }
+    });
+}
+function Getdataservices() {
+    $.ajax({
+        type: "GET",
+        url: "/Viewcustomer/side",
+        success: function (res) {
+            
+            var html = "";
+            
+            // Assuming `res` is an array of objects
+            $.each(res, function (i, e) {
+                // Use `e` to access each item in the `res` array
+                html += `
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <img src='/Image/${e.file}'>
+                               
+                            </div>
+                            <a href="/Viewcustomer/viewservice?sidename=${e.sidename}&contect=${e.contect}" class="stretched-link">
+                                <h3>${e.sidename}</h3>
+                            </a>
+                            <p>${e.contect}</p>
+                        </div>
+                    </div><!-- End Service Item -->
+                `;
+            });
+            
+            // Update the HTML content of the element with id 'servicesdata'
+            $("#servicesdata").html(html);
+        },
+        error: function (xhr, status, error) {
+            console.error("An error occurred: " + error);
+        }
+    });
+}
+ function GetdatasRepliescostomercs() {
+    $.ajax({
+   
+        type: "GET",
+        url: "/Viewcustomer/Repliescostomercs",
+        success: function (res) {
+            console.log(res);
+            var html = "";
+            
+            // Assuming `res` is an array of objects
+            $.each(res, function (i, e) {
+                // Use `e` to access each item in the `res` array
+                html += `
+                       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="/image/${e.file}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>${e.name}</h4>
+                <span> ${e.ttile}</span>
+                <p>${e.contect}</p>
+               
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+                `;
+            });
+            
+            // Update the HTML content of the element with id 'servicesdata'
+            $("#CUSTOMERDATA").html(html);
+        
+        },
+        error: function (xhr, status, error) {
+            console.error("An error occurred: " + error);
+        }
+    });
+}
+function Questionsdata() {
+    $.ajax({
+   
+        type: "GET",
+        url: "/Viewcustomer/circle",
+        success: function (res) {
+            console.log(res);
+            var html = "";
+            
+            // Assuming `res` is an array of objects
+            $.each(res, function (i, e) {
+                // Use `e` to access each item in the `res` array
+                html += `
+                     
+              <div class="faq-item">
+                <h3>${e.title}</h3>
+                <div class="faq-content">
+                  <p>${e.contect}</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item--><!-- End Team Member -->
+                `;
+            });
+            
+            // Update the HTML content of the element with id 'servicesdata'
+            $("#Questionsdata").html(html);
+           
+        },
+        error: function (xhr, status, error) {
+            console.error("An error occurred: " + error);
+        }
+    });
+}
+  
+   function getcontect() {
+    $.ajax({
+
+        type: "GET",
+        url: "/Viewcustomer/getcontect",
+        success: function (res) {
+            
+               $("#gamil").html(res.gamil)
+                    $("#phonecontect").html(res.phone) 
+                    $("#adderiescontect").html(res.adderies)
+                   
+                  
+      
+
+         
+        },
+        error: function (xhr, status, error) {
+            console.error("An error occurred: " + error);
+        }
+    });
+}
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

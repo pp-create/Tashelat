@@ -1,0 +1,62 @@
+﻿@model DAL.ViewModel.QuestionsVM
+
+@{
+    ViewData["Title"] = "ADDside";
+}
+<div class="pb-3">
+    <h1 style="text-align:center"> الأسئلة الشائعة</h1>
+</div>
+
+<div class="row" style="display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+
+    justify-content: space-between;">
+
+
+    <div class="col-lg-8">
+        <form asp-action="upexporcircle" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="title" style="direction:rtl;display: block;" class="control-label">سؤال </label>
+                <input asp-for="title" class="form-control" />
+               
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="contect" style="direction:rtl;display: block;" class="control-label">الاجابه </label>
+                <input asp-for="contect" class="form-control" />
+                <span asp-validation-for="contect" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CreationDate" style="direction:rtl;display: block;" class="control-label">التاريخ</label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="اضافه" style="display:block; margin:auto" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="circle">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -1,0 +1,149 @@
+﻿@using BLL.Interface
+@model DAL.ViewModel.AboutVM
+
+@{
+    ViewData["Title"] = "export";
+}
+
+@inject IServucesVM side
+<hr />
+
+<div class="pb-3">
+    <h1 style="text-align:center"> نبذه عنا </h1>
+</div>
+
+<div class="row" style="display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+
+    justify-content: space-between;">
+
+
+    <div class="col-lg-8">
+        <form asp-action="About" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="description" style="direction:rtl;display: block;" class="control-label">نبذه عنا</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="description"></textarea>
+            </div>   
+            <div class="form-group">
+                <label asp-for="Vision" style="direction:rtl;display: block;" class="control-label">الرؤية</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="Vision"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="goal" style="direction:rtl;display: block;" class="control-label">الهدف</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="goal"></textarea>
+            </div>
+  <div class="form-group">
+                <label asp-for="message" style="direction:rtl;display: block;" class="control-label">الرسالة</label>
+                <textarea class="form-control form-control show-tick" type="text" list="UserName" id="exampleDataList"
+                          asp-for="message"></textarea>
+
+
+            </div>
+            <div class="form-group">
+                <label asp-for="users" style="direction:rtl;display: block;" class="control-label">عملاء</label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="" asp-for="users" />
+
+            </div> <div class="form-group">
+                <label asp-for="company" style="direction:rtl;display: block;" class="control-label">شراكات</label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="" asp-for="company" />
+
+            </div> <div class="form-group">
+                <label asp-for="Employes" style="direction:rtl;display: block;" class="control-label"></label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="Name" asp-for="Employes" />
+
+            </div> <div class="form-group">
+                <label asp-for="services" style="direction:rtl;display: block;" class="control-label">موظفين</label>
+                <input class="form-control form-control show-tick" type="number" list="UserName" id="exampleDataList"
+                       placeholder="Name" asp-for="services" />
+
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="file1" style="direction:rtl;display: block;" class="control-label">الفيديو  </label>
+                <input class="form-control form-control show-tick" type="file" list="UserName" id="exampleDataList"
+                       placeholder="Name" asp-for="file1" />
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label asp-for="CreationDate" style="direction:rtl;display: block;" class="control-label">التاريخ</label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+
+            <div id="slider"></div>
+            <div class="form-group">
+                <input type="submit" value="اضافه" style="display:block; margin:auto" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="getAbout">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="~/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // عند تغيير حقل الملفات
+        $('input[type=file]').change(function () {
+            // تحديد العنصر المستهدف لعرض الصور (slider)
+            var slider = $('#slider');
+
+            // حذف الصور الحالية من slider (إذا كانت موجودة)
+            slider.empty();
+
+            // عرض الصور المختارة في slider
+            for (var i = 0; i < this.files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // إنشاء عنصر صورة وتعيين مسار الصورة
+                    var img = $('<img>').attr('src', e.target.result);
+                    // إضافة الصورة إلى slider
+                    slider.append(img);
+                };
+                // قراءة الملف كصورة
+                reader.readAsDataURL(this.files[i]);
+            }
+        });
+    });
+    $(document).ready(function () {
+        $("#exampleDataList").change(function () {
+            var sideNane = $("#exampleDataList").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Home/Getcile",
+                data: { Name: sideNane },
+
+                success: function (res) {
+                    $.each(res, function (i, e) {
+                        $("#slctDoctor").append("<option value='" + e.id + "'>" + e.circlename + "</option>");
+                    });
+                }
+
+            });
+        })
+
+    });
+
+</script>

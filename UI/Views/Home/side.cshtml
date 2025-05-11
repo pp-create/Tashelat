@@ -1,0 +1,85 @@
+﻿@model IEnumerable<DAL.ViewModel.ServicesVM>
+
+@{
+    ViewData["Title"] = "side";
+}
+
+
+<div class="breadcrumbs" style="direction:rtl;display: block;">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <h1>الجهات</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-left">
+                            <li><a style="text-decoration: auto;" href="/Home/Index">الصفحة الرئيسة</a></li>
+                            <li>&nbsp / &nbsp </li>
+                            <li class="active"> الجهات </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="direction:rtl;display: block;">
+                    <div class="card-header" style=" display: flex; justify-content: space-between;">
+                        <strong class="card-title">Courses Table</strong>
+
+                        <a href="/Home/ADDside" type="button" class="btn btn-outline-info">  <span>أضافة جهه</span> &nbsp +</a>
+                    </div>
+                    <div class="card-body">
+                        <table id="tblSlider" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+            <th>
+               اسم الجهه
+            </th>
+       
+            <th>
+              التاريخ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sidename)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                                            <div class="row @*w-75 m-aito*@">
+
+                                                <a asp-action="Deleteside" asp-controller="Home" asp-route-id=@item.Id class="col-4 btn btn-danger delete m-0 p-1 p-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                    حذف
+                                                </a>
+                                                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

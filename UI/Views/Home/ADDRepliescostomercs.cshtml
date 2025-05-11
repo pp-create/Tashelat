@@ -1,0 +1,73 @@
+﻿@model DAL.ViewModel.RepliescostomerVm
+
+@{
+    ViewData["Title"] = "ADDside";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="pb-3">
+    <h1 style="text-align:center"> الخدمات</h1>
+</div>
+
+<div class="row" style="display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+
+    justify-content: space-between;">
+
+  
+    <div class="col-lg-8">
+        <form asp-action="upexportRepliescostomercs" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+             <div class="form-group">
+                <label asp-for="name" style="direction:rtl;display: block;" class="control-label">اسم العميل</label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>  <div class="form-group">
+                <label asp-for="ttile" style="direction:rtl;display: block;" class="control-label">الوظيفه </label>
+                <input asp-for="ttile" class="form-control" />
+                <span asp-validation-for="ttile" class="text-danger"></span>
+            </div>  <div class="form-group">
+                <label asp-for="contect" style="direction:rtl;display: block;" class="control-label">الرائ </label>
+               
+                <textarea asp-for="contect" class="form-control"></textarea>
+                <span asp-validation-for="contect" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="file1" style="direction:rtl;display: block;" class="control-label">الصوره  </label>
+
+                <input asp-for="file1" type="file" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CreationDate" style="direction:rtl;display: block;" class="control-label">التاريخ</label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <input type="submit" value="اضافه" style="display:block; margin:auto" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Repliescostomercs">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

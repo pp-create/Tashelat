@@ -1,0 +1,85 @@
+﻿@model DAL.ViewModel.UserVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="pb-3">
+    <h1 style="text-align:center"> اضافه مستخدمين</h1>
+</div>
+
+<div class="row" style="display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+
+    justify-content: space-between;">
+
+
+    <div class="col-lg-8">
+        <form asp-action="adduser" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" style="direction:rtl;display: block;" class="control-label">اسم المستخدم</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" style="direction:rtl;display: block;" class="control-label">البريد الكتروني </label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone" style="direction:rtl;display: block;" class="control-label">رقم التلفون </label>
+                <input asp-for="phone" class="form-control" />
+                <span asp-validation-for="phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" style="direction:rtl;display: block;" class="control-label">كلمه السر </label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="CreationDate" style="direction:rtl;display: block;" class="control-label">التاريخ</label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="RoleId" style="direction:rtl;display: block;" class="control-label">نوع الموطف</label>
+                <select asp-for="RoleId" class="form-select" >
+                    <option value="1">مدير</option>
+                    <option value="2">موظف</option>
+                
+                </select>
+
+                <span asp-validation-for="RoleId" class="text-danger"></span>
+
+            </div>
+         
+            <div class="form-group">
+                <input type="submit" value="اضافه" style="display:block; margin:auto" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
